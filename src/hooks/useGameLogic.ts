@@ -3,8 +3,8 @@ import { GameState, GamePiece, Position, BoardCell } from '@/types/game';
 import { createGamePieces, rotatePiece } from '@/data/pieces';
 import { useToast } from '@/hooks/use-toast';
 
-const BOARD_ROWS = 5;
-const BOARD_COLS = 11;
+const BOARD_ROWS = 11;
+const BOARD_COLS = 5;
 
 const createEmptyBoard = (): BoardCell[][] => {
   return Array.from({ length: BOARD_ROWS }, (_, y) =>

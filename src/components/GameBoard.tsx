@@ -11,8 +11,8 @@ interface GameBoardProps {
   onDrop: (position: Position) => void;
 }
 
-const BOARD_ROWS = 5;
-const BOARD_COLS = 11;
+const BOARD_ROWS = 11;
+const BOARD_COLS = 5;
 
 export const GameBoard: React.FC<GameBoardProps> = ({
   board,
@@ -56,7 +56,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({
 
   return (
     <div className="bg-board-bg p-6 rounded-xl border-2 border-board-border shadow-2xl">
-      <div className="grid grid-cols-11 gap-1">
+      <div className="grid grid-cols-5 gap-1">
         {Array.from({ length: BOARD_ROWS * BOARD_COLS }, (_, index) => {
           const x = index % BOARD_COLS;
           const y = Math.floor(index / BOARD_COLS);
