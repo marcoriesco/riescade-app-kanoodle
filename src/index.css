@@ -2,39 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Kanoodle Puzzle Game Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Game Background */
+    --background: 220 15% 8%;
+    --foreground: 0 0% 95%;
+    
+    /* Game Board */
+    --board-bg: 220 25% 12%;
+    --board-hole: 220 20% 18%;
+    --board-border: 220 30% 25%;
+    
+    /* Control Panel */
+    --panel-bg: 220 20% 15%;
+    --panel-border: 220 25% 20%;
+    --display-bg: 120 30% 25%;
+    --display-text: 120 50% 85%;
+    
+    /* Game Pieces Colors */
+    --piece-red: 0 85% 60%;
+    --piece-orange: 25 90% 55%;
+    --piece-yellow: 50 95% 65%;
+    --piece-green: 120 60% 50%;
+    --piece-cyan: 180 70% 55%;
+    --piece-blue: 220 70% 60%;
+    --piece-purple: 270 60% 65%;
+    --piece-pink: 320 70% 70%;
+    --piece-white: 0 0% 90%;
+    --piece-gray: 0 0% 60%;
+    
+    /* Game States */
+    --valid-drop: 120 60% 50%;
+    --invalid-drop: 0 85% 60%;
+    --hover-glow: 60 100% 50%;
+    
+    /* Shadows & Effects */
+    --piece-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --glow-effect: 0 0 20px currentColor;
+    
+    /* Legacy theme variables */
+    --card: 220 15% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 20% 15%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 220 70% 60%;
+    --primary-foreground: 0 0% 95%;
+    --secondary: 220 25% 20%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 270 60% 65%;
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 220 25% 25%;
+    --input: 220 20% 18%;
+    --ring: 220 70% 60%;
 
     --radius: 0.5rem;
 

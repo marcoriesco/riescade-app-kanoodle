@@ -61,7 +61,28 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Game-specific colors
+				'board-bg': 'hsl(var(--board-bg))',
+				'board-hole': 'hsl(var(--board-hole))',
+				'board-border': 'hsl(var(--board-border))',
+				'panel-bg': 'hsl(var(--panel-bg))',
+				'panel-border': 'hsl(var(--panel-border))',
+				'display-bg': 'hsl(var(--display-bg))',
+				'display-text': 'hsl(var(--display-text))',
+				'piece-red': 'hsl(var(--piece-red))',
+				'piece-orange': 'hsl(var(--piece-orange))',
+				'piece-yellow': 'hsl(var(--piece-yellow))',
+				'piece-green': 'hsl(var(--piece-green))',
+				'piece-cyan': 'hsl(var(--piece-cyan))',
+				'piece-blue': 'hsl(var(--piece-blue))',
+				'piece-purple': 'hsl(var(--piece-purple))',
+				'piece-pink': 'hsl(var(--piece-pink))',
+				'piece-white': 'hsl(var(--piece-white))',
+				'piece-gray': 'hsl(var(--piece-gray))',
+				'valid-drop': 'hsl(var(--valid-drop))',
+				'invalid-drop': 'hsl(var(--invalid-drop))',
+				'hover-glow': 'hsl(var(--hover-glow))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
