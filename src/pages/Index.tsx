@@ -21,35 +21,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background p-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Kanoodle Puzzle Game
-          </h1>
-          <p className="text-muted-foreground">
-            Encaixe todas as peças no tabuleiro sem deixar espaços vazios
-          </p>
+      <div className="max-w-6xl mx-auto">
+        {/* Top Section - Control Panel */}
+        <div className="flex justify-center mb-8">
+          <ControlPanel
+            timer={gameState.timer}
+            gameStarted={gameState.gameStarted}
+            soundEnabled={gameState.soundEnabled}
+            level={gameState.level}
+            score={gameState.score}
+            onToggleGame={toggleGame}
+            onToggleSound={toggleSound}
+            onLevelChange={changeLevelHandler}
+          />
         </div>
 
-        {/* Game Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-          {/* Left Panel - Control Panel */}
-          <div className="lg:col-span-1">
-            <ControlPanel
-              timer={gameState.timer}
-              gameStarted={gameState.gameStarted}
-              soundEnabled={gameState.soundEnabled}
-              level={gameState.level}
-              score={gameState.score}
-              onToggleGame={toggleGame}
-              onToggleSound={toggleSound}
-              onLevelChange={changeLevelHandler}
-            />
-          </div>
-
-          {/* Center - Game Board */}
-          <div className="lg:col-span-1 flex justify-center">
+        {/* Bottom Section - Game Board and Pieces */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
+          {/* Main Game Board - Takes up 3/4 of the width */}
+          <div className="lg:col-span-3 flex justify-center">
             <GameBoard
               board={gameState.board}
               hoveredPosition={gameState.hoveredPosition}
@@ -60,7 +50,7 @@ const Index = () => {
             />
           </div>
 
-          {/* Right Panel - Piece Selector */}
+          {/* Right Side - Piece Selector - Takes up 1/4 of the width */}
           <div className="lg:col-span-1">
             <PieceSelector
               pieces={gameState.pieces}
