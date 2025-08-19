@@ -56,9 +56,16 @@ export const GameBoard: React.FC<GameBoardProps> = ({
     return previewPositions.some((pos) => pos.x === x && pos.y === y);
   };
 
+  // Determina classes para células ocupadas com base na cor da peça colocada
+  const getOccupiedClasses = (cell: BoardCell) => {
+    if (!cell.isOccupied) return "";
+    const colorClass = cell.pieceColor ? `bg-piece-${cell.pieceColor}` : "bg-muted";
+    // Mantém a borda neutra para não depender de classes dinâmicas inexistentes
+    return `${colorClass} border-2 border-muted-foreground`;
+  };
+
   return (
     <div className="relative z-30">
-      {" "}
       {/* Primeiro plano */}
       <div
         className="bg-board-bg border-2 border-board-border p-5 relative kanoodle-board"
@@ -84,7 +91,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({
                   "w-12 h-12 rounded-full transition-all duration-200 cursor-pointer",
                   "flex items-center justify-center relative",
                   isOccupied
-                    ? "bg-muted border-2 border-muted-foreground"
+                    ? getOccupiedClasses(cell)
                     : "bg-board-hole border-4 border-board-border hover:border-hover-glow/50",
                   isPreview &&
                     (isValidDrop
@@ -102,7 +109,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({
               >
                 {isOccupied && (
                   <div
-                    className="w-10 h-10 rounded-full bg-gradient-to-br from-white/90 to-gray-300 shadow-inner border border-white/20"
+                    className="w-10 h-10 rounded-full bg-gradient-to-br from-white/40 to-black/10 shadow-inner border border-white/20"
                     style={{
                       boxShadow:
                         "0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",

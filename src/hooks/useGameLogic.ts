@@ -143,7 +143,8 @@ export const useGameLogic = () => {
       newBoard[boardY][boardX] = {
         ...newBoard[boardY][boardX],
         isOccupied: true,
-        pieceId: gameState.selectedPiece!.id
+        pieceId: gameState.selectedPiece!.id,
+        pieceColor: gameState.selectedPiece!.color
       };
     });
 

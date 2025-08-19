@@ -22,6 +22,8 @@ export interface BoardCell {
   y: number;
   isOccupied: boolean;
   pieceId?: string;
+  // Mantém a cor da peça que ocupa esta célula
+  pieceColor?: PieceColor;
 }
 
 export interface GameState {
