@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -215,7 +216,12 @@
   }
 
   body {
-    background-color: #0b0b0b;
+    background: radial-gradient(1200px 600px at 20% 10%, rgba(67, 176, 42, 0.15), transparent),
+                radial-gradient(800px 400px at 80% 0%, rgba(45, 169, 225, 0.12), transparent),
+                radial-gradient(1000px 500px at 50% 100%, rgba(246, 194, 26, 0.10), transparent),
+                linear-gradient(180deg, #0b0b0b 0%, #111317 50%, #0b0b0b 100%);
+    background-attachment: fixed;
+    color: hsl(var(--foreground));
   }
 }
 
@@ -235,6 +241,9 @@
   }
   .text-lcd-text {
     color: hsl(var(--lcd-text));
+  }
+  .font-title {
+    font-family: 'Roboto Condensed', sans-serif;
   }
 
   /* Piece colors from ref-pecas.svg */

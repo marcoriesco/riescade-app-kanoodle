@@ -21,7 +21,6 @@ const Index = () => {
     <div
       className="max-w-2xl min-h-screen relative overflow-hidden kanoodle-container"
       style={{
-        background: "var(--canvas-bg)",
         padding: "24px",
         margin: "0 auto",
       }}

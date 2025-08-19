@@ -46,15 +46,19 @@ export const HUD: React.FC<HUDProps> = ({
         className="bg-hud-bg border-2 border-hud-border rounded-2xl p-6 relative kanoodle-hud"
         style={{
           boxShadow: "var(--shadow-soft)",
-          background: "linear-gradient(135deg, var(--hud-bg) 0%, #1A1C1E 100%)",
+          background:
+            "linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.2)), url('/assets/images/bg-hud.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Topo: Logo e Subtítulo (tamanhos equivalentes ao SVG) */}
         <div className="text-center mb-4 kanoodle-hud-top">
-          <h1 className="text-5xl font-black text-hud-text tracking-wider">
+          <h1 className="text-5xl font-bold font-title text-hud-text tracking-wider">
             KANOODLE
           </h1>
-          <p className="text-xl text-hud-subtitle mt-1 mb-8">
+          <p className="text-xl font-title text-hud-subtitle mt-1 mb-8">
             ULTIMATE 🏆 CHAMPION
           </p>
         </div>

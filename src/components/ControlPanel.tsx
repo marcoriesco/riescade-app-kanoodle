@@ -34,10 +34,10 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
     <div className="bg-panel-bg p-6 rounded-xl border-2 border-panel-border shadow-2xl">
       {/* Brand Header */}
       <div className="text-center mb-6">
-        <h1 className="text-2xl font-bold text-white tracking-wider">
+        <h1 className="text-2xl font-bold font-title text-white tracking-wider">
           KANOODLE
         </h1>
-        <p className="text-sm text-muted-foreground">ULTIMATE CHAMPION</p>
+        <p className="text-sm font-title text-muted-foreground">ULTIMATE CHAMPION</p>
       </div>
 
       {/* Digital Display */}
