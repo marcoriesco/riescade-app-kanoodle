@@ -62,13 +62,29 @@ export const useGameLogic = () => {
   }, [gameState.board]);
 
   const selectPiece = useCallback((piece: GamePiece) => {
+    if (!gameState.gameStarted) {
+      toast({
+        title: 'Jogo não iniciado',
+        description: 'Pressione Start para começar e mover as peças.'
+      });
+      return;
+    }
+
     setGameState(prev => ({
       ...prev,
       selectedPiece: prev.selectedPiece?.id === piece.id ? null : piece
     }));
-  }, []);
+  }, [gameState.gameStarted, toast]);
 
   const rotatePieceHandler = useCallback((piece: GamePiece) => {
+    if (!gameState.gameStarted) {
+      toast({
+        title: 'Jogo não iniciado',
+        description: 'Pressione Start para começar e rotacionar peças.'
+      });
+      return;
+    }
+
     const rotatedPiece = rotatePiece(piece);
     
     setGameState(prev => ({
@@ -76,10 +92,18 @@ export const useGameLogic = () => {
       pieces: prev.pieces.map(p => p.id === piece.id ? rotatedPiece : p),
       selectedPiece: prev.selectedPiece?.id === piece.id ? rotatedPiece : prev.selectedPiece
     }));
-  }, []);
+  }, [gameState.gameStarted, toast]);
 
   const handleCellHover = useCallback((position: Position | null) => {
     setGameState(prev => {
+      if (!prev.gameStarted) {
+        return {
+          ...prev,
+          hoveredPosition: null,
+          isValidDrop: false
+        };
+      }
+
       const isValid = position && prev.selectedPiece 
         ? canPlacePiece(prev.selectedPiece, position)
         : false;
@@ -93,6 +117,15 @@ export const useGameLogic = () => {
   }, [canPlacePiece]);
 
   const placePiece = useCallback((position: Position) => {
+    if (!gameState.gameStarted) {
+      toast({
+        title: 'Jogo não iniciado',
+        description: 'Pressione Start para começar.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
     if (!gameState.selectedPiece || !canPlacePiece(gameState.selectedPiece, position)) {
       toast({
         title: "Movimento inválido",
@@ -146,10 +179,14 @@ export const useGameLogic = () => {
   }, [gameState, canPlacePiece, toast]);
 
   const toggleGame = useCallback(() => {
-    setGameState(prev => ({
-      ...prev,
-      gameStarted: !prev.gameStarted
-    }));
+    setGameState(prev => {
+      const nextStarted = !prev.gameStarted;
+      return {
+        ...prev,
+        gameStarted: nextStarted,
+        ...(nextStarted ? {} : { selectedPiece: null, hoveredPosition: null, isValidDrop: false })
+      };
+    });
   }, []);
 
   const toggleSound = useCallback(() => {

@@ -19,13 +19,14 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden kanoodle-container"
+      className="max-w-2xl min-h-screen relative overflow-hidden kanoodle-container"
       style={{
         background: "var(--canvas-bg)",
         padding: "24px",
+        margin: "0 auto",
       }}
     >
-      <div className="max-w-7xl mx-auto relative">
+      <div className="w-full mx-auto relative">
         {/* HUD Eletrônico (Topo) */}
         <div className="mb-6 flex justify-center">
           <HUD
@@ -44,9 +45,9 @@ const Index = () => {
         </div>
 
         {/* Área Principal: Tabuleiro + Seletor de Peças */}
-        <div className="flex items-start justify-center gap-4 w-full max-w-2xl mx-auto kanoodle-main-area ">
-          {/* Tabuleiro Principal (Esquerda, Primeiro Plano) */}
-          <div className="relative">
+        <div className="w-full mx-auto kanoodle-main-area flex items-start">
+          {/* Tabuleiro Principal (Esquerda, 50%) */}
+          <div className="relative flex-[0_0_60%] max-w-[60%] w-[60%]">
             <GameBoard
               board={gameState.board}
               hoveredPosition={gameState.hoveredPosition}
@@ -57,8 +58,8 @@ const Index = () => {
             />
           </div>
 
-          {/* Seletor de Peças (Direita) */}
-          <div className="relative">
+          {/* Seletor de Peças (Direita, 50%) */}
+          <div className="relative flex-[0_0_40%] max-w-[40%] w-[40%]">
             <PieceSelector
               pieces={gameState.pieces}
               selectedPiece={gameState.selectedPiece}

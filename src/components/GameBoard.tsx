@@ -61,13 +61,15 @@ export const GameBoard: React.FC<GameBoardProps> = ({
       {" "}
       {/* Primeiro plano */}
       <div
-        className="bg-board-bg border-2 border-board-border rounded-2xl p-5 relative kanoodle-board"
+        className="bg-board-bg border-2 border-board-border p-5 relative kanoodle-board"
         style={{
           boxShadow: "var(--shadow-strong)",
           width: "100%",
+          borderRight: 0,
+          borderRadius: "1rem 0 1rem 1rem",
         }}
       >
-        <div className="grid grid-cols-5 gap-2 h-full items-center justify-center">
+        <div className="grid grid-cols-5 place-items-center gap-2 h-full items-center justify-center">
           {Array.from({ length: BOARD_ROWS * BOARD_COLS }, (_, index) => {
             const x = index % BOARD_COLS;
             const y = Math.floor(index / BOARD_COLS);

@@ -34,13 +34,8 @@ export const PieceSelector: React.FC<PieceSelectorProps> = ({
 
   return (
     <div
-      className="bg-panel-bg p-6 border-2 border-board-border rounded-2xl shadow-2xl"
-      style={{
-        paddingLeft: 85,
-        position: "relative",
-        left: -70,
-        top: 0,
-      }}
+      className="bg-panel-bg p-6 border-2 border-board-border rounded-2xl shadow-2xl w-full"
+      style={{ borderLeft: 0, borderRadius: "0 1rem 1rem 0" }}
     >
       <h3 className="text-lg font-semibold text-white mb-2 text-center">
         Peças Disponíveis
@@ -51,7 +46,7 @@ export const PieceSelector: React.FC<PieceSelectorProps> = ({
         <p>Clique direito para rotacionar</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto">
+      <div className="grid grid-cols-1 p-4 gap-4 max-h-96 overflow-y-auto">
         {availablePieces.map((piece) => {
           const isSelected = selectedPiece?.id === piece.id;
           return (

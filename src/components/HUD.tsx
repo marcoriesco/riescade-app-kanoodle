@@ -41,13 +41,11 @@ export const HUD: React.FC<HUDProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto relative z-20">
+    <div className="w-full mx-auto relative z-20">
       <div
         className="bg-hud-bg border-2 border-hud-border rounded-2xl p-6 relative kanoodle-hud"
         style={{
           boxShadow: "var(--shadow-soft)",
-          width: "92%",
-          maxWidth: "800px",
           background: "linear-gradient(135deg, var(--hud-bg) 0%, #1A1C1E 100%)",
         }}
       >
