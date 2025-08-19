@@ -1,10 +1,8 @@
-import React from 'react';
-import { GameBoard } from '@/components/GameBoard';
-import { ControlPanel } from '@/components/ControlPanel';
-import { PieceSelector } from '@/components/PieceSelector';
-import { useGameLogic } from '@/hooks/useGameLogic';
-import { Button } from '@/components/ui/button';
-import { RotateCcw } from 'lucide-react';
+import React from "react";
+import { GameBoard } from "@/components/GameBoard";
+import { HUD } from "@/components/HUD";
+import { PieceSelector } from "@/components/PieceSelector";
+import { useGameLogic } from "@/hooks/useGameLogic";
 
 const Index = () => {
   const {
@@ -16,15 +14,21 @@ const Index = () => {
     toggleGame,
     toggleSound,
     changeLevelHandler,
-    resetGame
+    resetGame,
   } = useGameLogic();
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Top Section - Control Panel */}
-        <div className="flex justify-center mb-8">
-          <ControlPanel
+    <div
+      className="min-h-screen relative overflow-hidden kanoodle-container"
+      style={{
+        background: "var(--canvas-bg)",
+        padding: "24px",
+      }}
+    >
+      <div className="max-w-7xl mx-auto relative">
+        {/* HUD Eletrônico (Topo) */}
+        <div className="mb-6 flex justify-center">
+          <HUD
             timer={gameState.timer}
             gameStarted={gameState.gameStarted}
             soundEnabled={gameState.soundEnabled}
@@ -32,14 +36,17 @@ const Index = () => {
             score={gameState.score}
             onToggleGame={toggleGame}
             onToggleSound={toggleSound}
-            onLevelChange={changeLevelHandler}
+            onLevelChange={(delta) =>
+              changeLevelHandler(delta > 0 ? "up" : "down")
+            }
+            onReload={resetGame}
           />
         </div>
 
-        {/* Bottom Section - Game Board and Pieces */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
-          {/* Main Game Board - Takes up 3/4 of the width */}
-          <div className="lg:col-span-3 flex justify-center">
+        {/* Área Principal: Tabuleiro + Seletor de Peças */}
+        <div className="flex items-start justify-center gap-4 w-full max-w-2xl mx-auto kanoodle-main-area ">
+          {/* Tabuleiro Principal (Esquerda, Primeiro Plano) */}
+          <div className="relative">
             <GameBoard
               board={gameState.board}
               hoveredPosition={gameState.hoveredPosition}
@@ -50,8 +57,8 @@ const Index = () => {
             />
           </div>
 
-          {/* Right Side - Piece Selector - Takes up 1/4 of the width */}
-          <div className="lg:col-span-1">
+          {/* Seletor de Peças (Direita) */}
+          <div className="relative">
             <PieceSelector
               pieces={gameState.pieces}
               selectedPiece={gameState.selectedPiece}
@@ -59,18 +66,6 @@ const Index = () => {
               onRotatePiece={rotatePieceHandler}
             />
           </div>
-        </div>
-
-        {/* Footer Controls */}
-        <div className="flex justify-center">
-          <Button
-            variant="outline"
-            onClick={resetGame}
-            className="bg-panel-bg border-panel-border text-white hover:bg-panel-border"
-          >
-            <RotateCcw className="w-4 h-4 mr-2" />
-            Reiniciar Jogo
-          </Button>
         </div>
       </div>
     </div>

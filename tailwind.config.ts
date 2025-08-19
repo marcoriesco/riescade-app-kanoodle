@@ -9,6 +9,21 @@ export default {
 		"./src/**/*.{ts,tsx}",
 	],
 	prefix: "",
+	safelist: [
+		// Piece colors
+		'bg-piece-red',
+		'bg-piece-orange',
+		'bg-piece-yellow',
+		'bg-piece-green',
+		'bg-piece-cyan',
+		'bg-piece-blue',
+		'bg-piece-purple',
+		'bg-piece-pink',
+		'bg-piece-white',
+		'bg-piece-gray',
+		'bg-piece-lightPink',
+		'bg-piece-lightGreen',
+	],
 	theme: {
 		container: {
 			center: true,

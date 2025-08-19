@@ -6,42 +6,157 @@
 
 @layer base {
   :root {
-    /* Game Background */
-    --background: 220 15% 8%;
+    /* Kanoodle Design System - New Palette */
+    --background: 0 0% 4%; /* #0B0B0B */
     --foreground: 0 0% 95%;
-    
+
+    /* HUD Colors */
+    --hud-bg: 210 8% 11%; /* #1A1C1E to #202326 */
+    --hud-border: 210 10% 17%; /* #2A2E33 */
+    --hud-text: 0 0% 100%; /* #FFFFFF */
+    --hud-subtitle: 0 0% 93%; /* #EDEDED */
+
+    /* LCD Display */
+    --lcd-bg: 72 20% 73%; /* #C8D2AE */
+    --lcd-text: 0 0% 6%; /* #101010 */
+
     /* Game Board */
-    --board-bg: 220 25% 12%;
-    --board-hole: 220 20% 18%;
-    --board-border: 220 30% 25%;
-    
-    /* Control Panel */
-    --panel-bg: 220 20% 15%;
-    --panel-border: 220 25% 20%;
-    --display-bg: 120 30% 25%;
-    --display-text: 120 50% 85%;
-    
-    /* Game Pieces Colors */
-    --piece-red: 0 85% 60%;
-    --piece-orange: 25 90% 55%;
-    --piece-yellow: 50 95% 65%;
-    --piece-green: 120 60% 50%;
+    --board-bg: 210 8% 13%; /* #1F2226 */
+    --board-hole: 210 8% 19%; /* #2C3136 */
+    --board-hole-shadow: 210 8% 9%; /* #181A1D */
+    --board-border: 210 10% 17%; /* #2A2E33 */
+
+    /* Challenge Card */
+    --card-bg: 210 8% 9%; /* #161819 */
+    --card-divider: 210 10% 17%; /* #2A2D31 with 60% opacity */
+
+    /* Additional Utility Classes */
+    .bg-canvas-bg {
+      background-color: var(--canvas-bg);
+    }
+    .bg-card-bg {
+      background-color: var(--card-bg);
+    }
+    .bg-card-divider {
+      background-color: var(--card-divider);
+    }
+    .bg-pin-green {
+      background-color: var(--pin-green);
+    }
+    .bg-pin-orange {
+      background-color: var(--pin-orange);
+    }
+
+    /* Responsive Layout */
+    /* Mobile (≤480px) */
+    @media (max-width: 480px) {
+      .kanoodle-container {
+        padding: 16px !important;
+      }
+
+      .kanoodle-hud {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 16px !important;
+      }
+
+      .kanoodle-hud-top {
+        margin-bottom: 12px;
+      }
+
+      .kanoodle-hud-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .kanoodle-main-area {
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+
+      .kanoodle-board {
+        width: 100% !important;
+        max-width: 350px !important;
+        height: auto !important;
+      }
+
+      .kanoodle-challenge-card {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin-left: 0 !important;
+      }
+    }
+
+    /* Tablet (481px - 1024px) */
+    @media (min-width: 481px) and (max-width: 1024px) {
+      .kanoodle-container {
+        padding: 20px !important;
+      }
+
+      .kanoodle-challenge-card {
+        width: 240px !important;
+      }
+
+      .kanoodle-board {
+        width: 380px !important;
+        height: 360px !important;
+      }
+    }
+
+    /* Desktop (≥1025px) */
+    @media (min-width: 1025px) {
+      .kanoodle-container {
+        padding: 32px !important;
+      }
+
+      .kanoodle-hud {
+        border-radius: 28px !important;
+      }
+
+      .kanoodle-board,
+      .kanoodle-challenge-card {
+        border-radius: 32px !important;
+      }
+    }
+
+    /* HUD Buttons */
+    --btn-red: 4 82% 55%; /* #E73A2F */
+    --btn-green: 103 61% 43%; /* #43B02A */
+    --btn-blue: 199 75% 53%; /* #2DA9E1 */
+    --btn-yellow: 45 93% 54%; /* #F6C21A */
+
+    /* Challenge Pins */
+    --pin-green: 166 100% 35%; /* #00B284 to #00A97E */
+    --pin-orange: 29 100% 50%; /* #FF7A00 to #FF8400 */
+
+    /* Game Pieces Colors (keeping existing for compatibility) */
+    --piece-red: 4 82% 55%;
+    --piece-orange: 29 100% 50%;
+    --piece-yellow: 45 93% 54%;
+    --piece-green: 166 100% 35%;
     --piece-cyan: 180 70% 55%;
-    --piece-blue: 220 70% 60%;
+    --piece-blue: 199 75% 53%;
     --piece-purple: 270 60% 65%;
     --piece-pink: 320 70% 70%;
     --piece-white: 0 0% 90%;
     --piece-gray: 0 0% 60%;
-    
+
     /* Game States */
-    --valid-drop: 120 60% 50%;
-    --invalid-drop: 0 85% 60%;
-    --hover-glow: 60 100% 50%;
-    
+    --valid-drop: 103 61% 43%;
+    --invalid-drop: 4 82% 55%;
+    --hover-glow: 45 93% 54%;
+
+    /* Canvas and Layout */
+    --canvas-bg: #0b0b0b;
+
     /* Shadows & Effects */
-    --piece-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    --glow-effect: 0 0 20px currentColor;
-    
+    --shadow-soft: 0 12px 16px rgba(0, 0, 0, 0.25);
+    --shadow-strong: 0 20px 28px rgba(0, 0, 0, 0.35),
+      0 8px 16px rgba(0, 0, 0, 0.25);
+    --inner-shadow: inset 0 2px 4px rgba(24, 26, 29, 0.8),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.05);
+
     /* Legacy theme variables */
     --card: 220 15% 8%;
     --card-foreground: 0 0% 95%;
@@ -126,5 +241,89 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* HUD utilities (already added) */
+  .bg-hud-bg {
+    background-color: hsl(var(--hud-bg));
+  }
+  .border-hud-border {
+    border-color: hsl(var(--hud-border));
+  }
+  .text-hud-text {
+    color: hsl(var(--hud-text));
+  }
+  .text-hud-subtitle {
+    color: hsl(var(--hud-subtitle));
+  }
+  .text-lcd-text {
+    color: hsl(var(--lcd-text));
+  }
+
+  /* Piece colors from ref-pecas.svg */
+  .bg-piece-red {
+    background-color: #f44336;
+  }
+  .bg-piece-orange {
+    background-color: #ff9800;
+  }
+  .bg-piece-yellow {
+    background-color: #ffeb3b;
+  }
+  .bg-piece-green {
+    background-color: #7bc043;
+  }
+  .bg-piece-cyan {
+    background-color: #6ec6ff;
+  }
+  .bg-piece-blue {
+    background-color: #0288d1;
+  }
+  .bg-piece-purple {
+    background-color: #3f51b5;
+  }
+  .bg-piece-pink {
+    background-color: #ec407a;
+  }
+  .bg-piece-white {
+    background-color: #fafafa;
+  }
+  .bg-piece-gray {
+    background-color: #e0e0e0;
+  }
+  /* New light variants */
+  .bg-piece-lightPink {
+    background-color: #f8bbd0;
+  }
+  .bg-piece-lightGreen {
+    background-color: #8bc34a;
+  }
+}
+
+/* Global thin, subtle scrollbars */
+@layer base {
+  /* Firefox */
+  html {
+    scrollbar-width: thin; /* thin | auto | none */
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent; /* thumb | track */
+  }
+
+  /* WebKit-based browsers (Chrome, Edge, Safari, Opera) */
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.24);
   }
 }

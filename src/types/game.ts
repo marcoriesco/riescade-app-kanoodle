@@ -1,4 +1,4 @@
-export type PieceColor = 'red' | 'orange' | 'yellow' | 'green' | 'cyan' | 'blue' | 'purple' | 'pink' | 'white' | 'gray';
+export type PieceColor = 'red' | 'orange' | 'yellow' | 'green' | 'cyan' | 'blue' | 'purple' | 'pink' | 'white' | 'gray' | 'lightPink' | 'lightGreen';
 
 export interface Position {
   x: number;
