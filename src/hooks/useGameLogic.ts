@@ -61,6 +61,38 @@ export const useGameLogic = () => {
     });
   }, [gameState.board]);
 
+  // Checa se uma peça pode ser colocada em uma posição específica num tabuleiro fornecido
+  const canPlaceOnBoard = (piece: GamePiece, position: Position, board: BoardCell[][]): boolean => {
+    return piece.shape.positions.every(pos => {
+      const boardX = position.x + pos.x;
+      const boardY = position.y + pos.y;
+      if (boardX < 0 || boardX >= BOARD_COLS || boardY < 0 || boardY >= BOARD_ROWS) {
+        return false;
+      }
+      return !board[boardY][boardX].isOccupied;
+    });
+  };
+
+  // Verifica se há qualquer jogada disponível para as peças restantes, considerando rotações
+  const hasAnyValidMove = (pieces: GamePiece[], board: BoardCell[][]): boolean => {
+    const remaining = pieces.filter(p => !p.isPlaced);
+    for (const piece of remaining) {
+      // Testa até 4 rotações
+      let rotated = piece;
+      for (let r = 0; r < 4; r++) {
+        for (let y = 0; y < BOARD_ROWS; y++) {
+          for (let x = 0; x < BOARD_COLS; x++) {
+            if (canPlaceOnBoard(rotated, { x, y }, board)) {
+              return true;
+            }
+          }
+        }
+        rotated = rotatePiece(rotated);
+      }
+    }
+    return false;
+  };
+
   const selectPiece = useCallback((piece: GamePiece) => {
     if (!gameState.gameStarted) {
       toast({
@@ -85,12 +117,12 @@ export const useGameLogic = () => {
       return;
     }
 
-    const rotatedPiece = rotatePiece(piece);
+    const rotatedPieceObj = rotatePiece(piece);
     
     setGameState(prev => ({
       ...prev,
-      pieces: prev.pieces.map(p => p.id === piece.id ? rotatedPiece : p),
-      selectedPiece: prev.selectedPiece?.id === piece.id ? rotatedPiece : prev.selectedPiece
+      pieces: prev.pieces.map(p => p.id === piece.id ? rotatedPieceObj : p),
+      selectedPiece: prev.selectedPiece?.id === piece.id ? rotatedPieceObj : prev.selectedPiece
     }));
   }, [gameState.gameStarted, toast]);
 
@@ -153,6 +185,7 @@ export const useGameLogic = () => {
     );
 
     const isCompleted = updatedPieces.every(piece => piece.isPlaced);
+    const hasMoves = hasAnyValidMove(updatedPieces, newBoard);
     const scoreBonus = isCompleted ? Math.max(1000 - gameState.timer * 10, 100) : 50;
 
     setGameState(prev => ({
@@ -162,7 +195,8 @@ export const useGameLogic = () => {
       selectedPiece: null,
       hoveredPosition: null,
       isValidDrop: false,
-      gameCompleted: isCompleted,
+      gameCompleted: isCompleted || !hasMoves,
+      gameStarted: isCompleted || !hasMoves ? false : prev.gameStarted,
       score: prev.score + scoreBonus
     }));
 
@@ -170,6 +204,12 @@ export const useGameLogic = () => {
       toast({
         title: "Parabéns! 🎉",
         description: `Nível completado! Pontuação: +${scoreBonus}`,
+      });
+    } else if (!hasMoves) {
+      toast({
+        title: "Fim de jogo",
+        description: "Não há mais movimentos possíveis no tabuleiro.",
+        variant: 'destructive'
       });
     } else {
       toast({
