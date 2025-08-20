@@ -47,10 +47,9 @@ export const HUD: React.FC<HUDProps> = ({
         style={{
           boxShadow: "var(--shadow-soft)",
           background:
-            "linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.2)), url('/assets/images/bg-hud.jpg')",
-          backgroundSize: "cover",
+            "linear-gradient(135deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('/assets/images/bg-hud.png')",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          backgroundRepeat: "repeat",
         }}
       >
         {/* Topo: Logo e Subtítulo (tamanhos equivalentes ao SVG) */}
